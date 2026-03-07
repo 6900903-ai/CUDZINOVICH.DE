@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="{{ lang | default('de') }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ description | default('€150M Green SAF Factory • NRW, Germany • RED III & CORSIA Compliant') }}">
+  <link rel="canonical" href="{{ page | canonical(lang, siteUrl) }}">
+  
+  {% for l, items in nav %}
+    <link rel="alternate" hreflang="{{ l }}" href="{{ page.url | i18nUrl(l, lang) | canonical(l, siteUrl) }}">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ page.url | i18nUrl('en', lang) | canonical('en', siteUrl) }}">
+  
+  <meta property="og:title" content="{{ title }} | CHUDO SAF NRW">
+  <meta property="og:description" content="{{ description | default('€150M Green SAF Factory • NRW, Germany') }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page | canonical(lang, siteUrl) }}">
+  <meta property="og:locale" content="{{ lang }}_{{ 'DE' if lang == 'de' else ('US' if lang == 'en' else 'RU') }}">
+  
+  <title>{{ title }} | CHUDO SAF NRW</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script defer data-domain="chudzinovich.de" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">
+    {% if lang == 'de' %}Zum Hauptinhalt springen
+    {% elif lang == 'en' %}Skip to main content
+    {% else %}Перейти к основному контенту{% endif %}
+  </a>
+
+  <header class="site-header">
+    <div class="header-main">
+      <button id="burger-btn" class="burger-btn" aria-label="Menu" aria-expanded="false">
+        <span class="burger-line"></span><span class="burger-line"></span>
+      </button>
+      <a href="/{{ lang }}/" class="header-logo holo-text">CHUDZINOVICH</a>
+      <a href="/{{ lang }}/investors/" class="header-action-btn">VDR ACCESS</a>
+    </div>
+    <div class="header-nav-bar">
+      <button id="nav-arrow-left" class="nav-arrow" aria-label="Left">❮</button>
+      <nav id="scroll-nav" class="scroll-nav">
+        {% for item in nav[lang] %}
+          <a href="/{{ lang }}{{ item.url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+      <button id="nav-arrow-right" class="nav-arrow" aria-label="Right">❯</button>
+    </div>
+  </header>
+
+  <div id="side-menu-overlay" class="side-menu-overlay"></div>
+  <div id="side-menu" class="side-menu">
+    <div class="side-menu-header"><button id="side-menu-close" class="side-menu-close">✕</button></div>
+    <nav class="side-nav-links">
+      {% for item in nav[lang] %}
+        <a href="/{{ lang }}{{ item.url }}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="lang-switcher">
+      <svg class="globe-icon" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.92 7.115h-4.354c-.21-1.634-.582-3.151-1.077-4.482 2.214.659 4.095 2.235 5.431 4.482zM12 2.15c1.173 0 2.28.32 3.254.887-.514 1.258-.89 2.651-1.104 4.078H9.85c-.214-1.427-.59-2.82-1.104-4.078C9.72 2.47 10.827 2.15 12 2.15zM2.863 10.462h4.592c-.085 1.002-.085 2.074 0 3.076H2.863c-.114-.495-.178-1.008-.178-1.538 0-.53.064-1.043.178-1.538zm2.217 6.423h4.354c.21 1.634.582 3.151 1.077 4.482-2.214-.659-4.095-2.235-5.431-4.482zm4.354-9.308H5.08c1.336-2.247 3.217-3.823 5.431-4.482-.495 1.331-.867 2.848-1.077 4.482zm.416 11.272c.514-1.258.89-2.651 1.104-4.078h4.298c.214 1.427.59 2.82 1.104 4.078-.974.567-2.081.887-3.254.887-1.173 0-2.28-.32-3.254-.887zm1.31-6.195H9.84c-.092-1.018-.092-2.058 0-3.076h4.32c.092 1.018.092 2.058 0 3.076zm3.336 4.482c.495-1.331.867-2.848 1.077-4.482h4.354c-1.336 2.247-3.217 3.823-5.431 4.482zm1.642-6.558c.085-1.002.085-2.074 0-3.076h4.592c.114.495.178 1.008.178 1.538 0 .53-.064 1.043-.178 1.538h-4.77z"/></svg>
+      <div class="lang-links">
+        <a href="{{ page.url | i18nUrl('de', lang) }}" class="{% if lang == 'de' %}active{% endif %}">DE</a>
+        <a href="{{ page.url | i18nUrl('en', lang) }}" class="{% if lang == 'en' %}active{% endif %}">EN</a>
+        <a href="{{ page.url | i18nUrl('ru', lang) }}" class="{% if lang == 'ru' %}active{% endif %}">RU</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content" id="main-content">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/{{ lang }}/" class="footer-logo holo-text">CHUDO SAF NRW</a>
+        <p class="footer-desc">
+          {% if lang == 'de' %}Integration modernster IT-Lösungen, FinTech und Realwirtschaft.
+          {% elif lang == 'en' %}Integration of advanced IT solutions, FinTech and real economy.
+          {% else %}Интеграция передовых IT-решений, финтеха и реального сектора экономики.{% endif %}
+        </p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4 class="footer-heading">{% if lang == 'de' %}Navigation{% elif lang == 'en' %}Navigation{% else %}Навигация{% endif %}</h4>
+        <ul class="footer-list">
+          <li><a href="/{{ lang }}/technology/">{{ nav[lang][1].label }}</a></li>
+          <li><a href="/{{ lang }}/financials/">{{ nav[lang][2].label }}</a></li>
+          <li><a href="/{{ lang }}/investors/">{{ nav[lang][3].label }}</a></li>
+          <li><a href="/{{ lang }}/privacy/">{{ nav[lang][5].label }}</a></li>
+          <li><a href="https://000585.github.io/2/" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">{% if lang == 'de' %}Cybersecurity (000585/2){% elif lang == 'en' %}Cybersecurity (000585/2){% else %}Кибербезопасность (000585/2){% endif %}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4 class="footer-heading">{% if lang == 'de' %}Kontakt{% elif lang == 'en' %}Contact{% else %}Контакты{% endif %}</h4>
+        <ul class="footer-list">
+          <li>📍 Nordrhein-Westfalen, Germany</li>
+          <li>✉️ <a href="mailto:yury@chudzinovich.de">yury@chudzinovich.de</a></li>
+          <li>📞 <a href="tel:+48795972990">+48 795 972 990</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="current-year"></span> CHUDO SAF NRW GmbH. All rights reserved.</p>
+      
+      <div class="social-grid">
+        <a href="https://www.youtube.com/channel/UCTXAwovvaec4w9ztbggWMEQ" target="_blank" class="social-btn social-yt" aria-label="YouTube"><svg class="social-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://t.me/Z69000" target="_blank" class="social-btn social-tg" aria-label="Telegram"><svg class="social-icon" viewBox="0 0 24 24"><path d="M11.944 0C5.347 0 0 5.347 0 11.944c0 6.597 5.347 11.944 11.944 11.944 6.597 0 11.944-5.347 11.944-11.944C23.888 5.347 18.541 0 11.944 0zm5.204 8.12l-1.764 8.312c-.133.593-.483.738-.982.458l-2.686-1.98-1.296 1.246c-.144.144-.264.264-.54.264l.192-2.73 4.968-4.488c.216-.192-.048-.3-.336-.108L8.568 12.44 5.916 11.61c-.576-.18-.588-.576.12-.852l10.38-4.008c.48-.18.9.108.732.372z"/></svg></a>
+        <a href="https://facebook.com/chudzinovich" target="_blank" class="social-btn social-fb" aria-label="Facebook"><svg class="social-icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a href="https://x.com/CHUDZINOVICH1" target="_blank" class="social-btn social-x" aria-label="X"><svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://instagram.com/chudzinovichyury" target="_blank" class="social-btn social-ig" aria-label="Instagram"><svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949 0-3.259-.014-3.667-.072-4.947-.072-4.358-2.618-6.78-6.98-6.98C15.667.014 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://tiktok.com/@chudzinovich" target="_blank" class="social-btn social-tt" aria-label="TikTok"><svg class="social-icon" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg></a>
+      </div>
+      
+      <div class="footer-legal-blocks" style="width: 100%; max-width: 800px; margin-top: 1.5rem; text-align: center;">
+        <p class="footer-disclaimer">
+          {% if lang == "de" %}<strong>Regulatory Disclaimer:</strong> Diese Website dient ausschließlich der Information qualifizierter Investoren (§ 2 Abs. 6 WpPG). Keine Anlageberatung. Kein Prospekt.
+          {% elif lang == "en" %}<strong>Regulatory Disclaimer:</strong> This website is for information of qualified investors only (§ 2 Abs. 6 WpPG). Not investment advice. Not a prospectus.
+          {% else %}<strong>Regulatory Disclaimer:</strong> Этот сайт предназначен только для квалифицированных инвесторов (§ 2 Abs. 6 WpPG). Не является инвестиционной рекомендацией. Не является проспектом.{% endif %}
+        </p>
+        <p class="footer-forward-looking" style="margin-top: 1rem; font-size: 0.75rem; color: #6b7280; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+          {% if lang == "de" %}<strong>Forward-Looking Statements:</strong> Alle Projektionen basieren auf Pre-FEED-Daten. Investoren werden aufgefordert, die im VDR hinterlegten Dokumente zu konsultieren.
+          {% elif lang == "en" %}<strong>Forward-Looking Statements:</strong> All projections are based on Pre-FEED data. Investors are urged to consult the documents filed in the VDR.
+          {% else %}<strong>Прогнозные заявления:</strong> Все прогнозы основаны на данных Pre-FEED. Инвесторам рекомендуется ознакомиться с документацией в VDR.{% endif %}
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="vdr-btn-container" id="vdr-btn-container">
+    <button id="vdr-btn-collapsed" class="vdr-btn-collapsed" aria-label="Open VDR Form">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+    <div id="vdr-btn-expanded" class="vdr-btn-expanded">
+      <button id="vdr-btn" class="vdr-btn">VDR ACCESS</button>
+      <button id="vdr-btn-close" class="vdr-btn-hide" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <div id="vdr-overlay" class="vdr-overlay" aria-hidden="true"></div>
+  <div id="vdr-panel" class="vdr-panel" role="dialog">
+    <button id="vdr-close" class="vdr-close" aria-label="Close">✕</button>
+    <div class="vdr-content">
+      <div class="vdr-logo holo-text">VDR ACCESS</div>
+      <h2 class="vdr-title holo-text">
+        {% if lang == 'de' %}VIRTUELLER DATENRAUM{% elif lang == 'en' %}VIRTUAL DATA ROOM{% else %}ВИРТУАЛЬНЫЙ ДАТА-РУМ{% endif %}
+      </h2>
+      <p class="vdr-desc">
+        {% if lang == 'de' %}Nur für qualifizierte Investoren. Keine öffentlichen E-Mail-Adressen erlaubt.{% elif lang == 'en' %}Qualified investors only. Corporate email required.{% else %}Только для квалифицированных инвесторов. Публичные email-сервисы не допускаются.{% endif %}
+      </p>
+      
+      <form class="vdr-form" id="vdr-form"
+        data-err-empty="{% if lang == 'de' %}Alle Felder sind erforderlich{% elif lang == 'en' %}All fields are required{% else %}Все поля обязательны{% endif %}"
+        data-err-email="{% if lang == 'de' %}Ungültige E-Mail-Adresse{% elif lang == 'en' %}Invalid email{% else %}Некорректный email{% endif %}">
+        
+        <label for="vdr-firstname" class="sr-only">{% if lang == 'de' %}Vorname{% elif lang == 'en' %}First Name{% else %}Имя{% endif %}</label>
+        <input type="text" id="vdr-firstname" placeholder="{% if lang == 'de' %}Vorname{% elif lang == 'en' %}First Name{% else %}Имя{% endif %}" required class="vdr-input" name="firstName">
+        
+        <label for="vdr-lastname" class="sr-only">{% if lang == 'de' %}Nachname{% elif lang == 'en' %}Last Name{% else %}Фамилия{% endif %}</label>
+        <input type="text" id="vdr-lastname" placeholder="{% if lang == 'de' %}Nachname{% elif lang == 'en' %}Last Name{% else %}Фамилия{% endif %}" required class="vdr-input" name="lastName">
+        
+        <label for="vdr-email" class="sr-only">{% if lang == 'de' %}Geschäftliche E-Mail{% elif lang == 'en' %}Corporate Email{% else %}Корпоративный email{% endif %}</label>
+        <input type="email" id="vdr-email" placeholder="{% if lang == 'de' %}Geschäftliche E-Mail{% elif lang == 'en' %}Corporate Email{% else %}Корпоративный email{% endif %}" required class="vdr-input" name="email">
+        
+        <label for="vdr-company" class="sr-only">{% if lang == 'de' %}Unternehmen{% elif lang == 'en' %}Company{% else %}Компания{% endif %}</label>
+        <input type="text" id="vdr-company" placeholder="{% if lang == 'de' %}Unternehmen{% elif lang == 'en' %}Company{% else %}Компания{% endif %}" required class="vdr-input" name="company">
+        
+        <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.5rem; margin: 1rem 0; text-align: left;">
+          <input type="checkbox" id="privacy-consent" required style="margin-top: 0.25rem;">
+          <label for="privacy-consent" style="font-size: 0.8rem; color: #6b7280; line-height: 1.4;">
+            {% if lang == "de" %}Ich stimme der Datenverarbeitung gemäß der <a href="/{{ lang }}/privacy/" target="_blank">Datenschutzerklärung</a> zu.
+            {% elif lang == "en" %}I agree to the data processing according to the <a href="/{{ lang }}/privacy/" target="_blank">Privacy Policy</a>.
+            {% else %}Я согласен с обработкой данных согласно <a href="/{{ lang }}/privacy/" target="_blank">Политике конфиденциальности</a>.{% endif %}
+          </label>
+        </div>
+
+        <input type="hidden" name="_gotcha" style="display:none">
+        <button type="submit" class="vdr-submit">{% if lang == 'de' %}ZUGANG ANFORDERN{% elif lang == 'en' %}REQUEST ACCESS{% else %}ЗАПРОСИТЬ ДОСТУП{% endif %}</button>
+      </form>
+      <div id="vdr-form-message"></div>
+    </div>
+  </div>
+
+  <script src="/js/main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

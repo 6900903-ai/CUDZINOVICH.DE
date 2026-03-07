@@ -1,0 +1,13 @@
+﻿{
+  "name": "chudo-saf-nrw",
+  "version": "6.0.0",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "nunjucks": "^3.2.4",
+    "pdf-lib": "^1.17.1"
+  }
+}
