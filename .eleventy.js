@@ -4,7 +4,7 @@
   eleventyConfig.addPassthroughCopy("src/assets");
 
   eleventyConfig.addGlobalData("currentYear", () => new Date().getFullYear());
-  eleventyConfig.addGlobalData("siteUrl", "https://chudzinovich.de");
+  eleventyConfig.addGlobalData("siteUrl", "https://chudinovich.de");
 
   eleventyConfig.addGlobalData("nav", {
     de: [
